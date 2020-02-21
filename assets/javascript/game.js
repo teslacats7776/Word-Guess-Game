@@ -1,3 +1,5 @@
+
+
 //an array of words
 var words = [
     "javascript",
@@ -22,7 +24,7 @@ var words = [
   return answerArray;
   }
   console.log (generateUnderscore());
-  
+
   //check user entered guess
    //var newDiv  = document.getElementById ("youGuess");
   document.addEventListener("keydown", function(event) {
@@ -33,16 +35,14 @@ var words = [
   console.log (remainingLetters);
   console.log (word.indexOf(youGuess));
   //indexof, where in the string a specifed value occurs.
-  
-  
-  
-  if (word.indexOf(youGuess)>-1 && remainingLetters.length>0
-  ) {
-    //answerArray[word.indexOf(youGuess)] = youGuess;
-    console.log (answerArray[3]);
+  var j = word.indexOf(youGuess);
+  //str.split('a').length-1
+  for (var j = 0; j < word.split(youGuess).length-1; j++) {
+  if (word.indexOf(youGuess)>-1 && remainingLetters>0) {
+    answerArray[word.indexOf(youGuess)] = String (youGuess);
+   console.log (answerArray);
     remainingLetters--;
     console.log (remainingLetters);
-    console.log (true);
     rightWord.push (youGuess);
     console.log (rightWord);
   }
@@ -50,5 +50,10 @@ var words = [
     wrongWord.push (youGuess);
     console.log (wrongWord);
   }
-  
+}
   });
+
+
+
+
+ //for all position of letters found

@@ -6,21 +6,106 @@
 <link rel="stylesheet" href = "assets/css/reset.css">
 <link type="text/css" rel="stylesheet" href="assets/css/style.css">
 <link href="https://fonts.googleapis.com/css?family=New+Rocker&display=swap" rel="stylesheet">
-
-<script src="assets/javascript/game.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<!--<script src="assets/javascript/game.js"></script>-->
 </head>
-<body></body>
+<body>    
+</body>
 
     <div class="container">
         <header>
     <h1>Word Guessing game</h1>
     <h3></h3>
         </header>
-        <div class="underscore">_ _ _ _</div>
-        <div class="youGuess"></div>
-        <div class="rightGuess">right guess</div>
-        <div class="wrongGuess">wrong guess</div>
-
+        <div id="youGuess"></div>
+        <div id="rightGuess"></div>
+        <div id="wrongGuess">wrong guess</div>
+        <div id="remainedChances"></div>
 </div>
+<script>
+   
+var words = [
+    "monkey"
+    ];
+   
+    var allchances = 10 ;
+    var chanceleft = document.getElementById ("remainedChances");
+  //choose word randomly
+  var word = words[Math.floor(Math.random() * words.length)];
+  console.log (word);
+   var remainingLetters = word.length; 
+  var rightWord =[];
+  var wrongWord = [];
+  
+    var answerArray = [];
+  function generateUnderscore () {
+  
+    for (var i = 0; i < word.length; i++) {
+      answerArray.push ('_');
+    }
+  return answerArray;
+  }
+  console.log (generateUnderscore());
 
+  //check user entered guess
+   //var newDiv  = document.getElementById ("youGuess");
+  document.addEventListener("keydown", function(event) {
+    console.log(event.key);
+    //newDiv.textContent = `${event.key}`;
+  var youGuess = event.key;
+ 
+  console.log (remainingLetters);
+  console.log (word.indexOf(youGuess));
+  //indexof, where in the string a specifed value occurs.
+  
+  //str.split('a').length-1
+
+  if (word.indexOf(youGuess)>-1 && remainingLetters > 0 && allchances >0) 
+{
+//guessed right 
+
+    answerArray[word.indexOf(youGuess)] = String (youGuess);
+   console.log (answerArray);
+    rightWord.push (youGuess);
+    console.log (rightWord);
+
+var usedrightword = document.getElementById ("rightGuess");
+usedrightword.textContent = rightWord;
+    var targetdiv = document.getElementById ("youGuess");
+    targetdiv.textContent = answerArray;
+   chanceleft.textContent = allchances;
+   remainingLetters --;
+    console.log (remainingLetters);
+  }
+
+//guessed wrong still has life
+  else if (word.indexOf(youGuess)==-1 && remainingLetters > 0 && allchances >0)   {
+    wrongWord.push (youGuess);
+    console.log (wrongWord);
+    var usedwrongword = document.getElementById ("wrongGuess");
+    usedwrongword.textContent = wrongWord;
+    allchances --;
+    console.log (allchances);
+   chanceleft.textContent = allchances;
+  }
+//guess wrong and life runs out
+  else if (word.indexOf(youGuess)==-1 && remainingLetters > 0 && allchances == 0)  
+{alert ("Failed!! The answer was " + word);
+location.reload();
+}
+//win
+else if (word.indexOf(youGuess)>-1 && remainingLetters == 0 && allchances > 0)  {
+    {alert ("Congratulations!! The answer was " + word);
+location.reload();
+}
+} 
+
+} 
+
+);
+
+</script>
 </html>
