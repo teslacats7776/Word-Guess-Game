@@ -11,24 +11,62 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
 <!--<script src="assets/javascript/game.js"></script>-->
+
 </head>
 <body>    
 </body>
 
     <div class="container">
         <header>
-    <h1>Word Guessing game</h1>
-    <h3></h3>
+    
+   <h2>Isograms Word Guessing game</h2> <div id="logo">
+      <img src="assets/images/GettyImages-556699853-58be669a5f9b58af5cefb97d-5b77276c46e0fb0050a932e4.jpg">
+      </div></div>
         </header>
+        
         <div id="youGuess"></div>
-        <div id="rightGuess"></div>
-        <div id="wrongGuess">wrong guess</div>
+        <!--<div id="rightGuess"></div>-->
+        <p>Wrong Guesses</p>
+        <div id="wrongGuess"></div>
+        <p>Remaining Chances</p>
         <div id="remainedChances"></div>
-</div>
+        <audio id="audio" src="assets/images/BOTW_Fanfare_HeartContainer.wav"></audio>
 <script>
    
 var words = [
-    "monkey"
+"abolishment",
+"atmospheric",
+"backgrounds",
+"campgrounds",
+"complainers",
+"countryside",
+"dangerously",
+"disgraceful",
+"disturbance",
+"documentary",
+"facetiously",
+"fracedinous",
+"filmography",
+"fluoridates",
+"lumberjacks",
+"misanthropy",
+"nefariously",
+"palindromes",
+"personality",
+"playgrounds",
+"playwrights",
+"precautions",
+"predictably",
+"Republicans",
+"semordnilap",
+"speculation",
+"stenography",
+"subordinate",
+"Switzerland",
+"trampolines",
+"undesirably",
+"vouchsafing",
+"workmanship"
     ];
    
     var allchances = 10 ;
@@ -52,11 +90,16 @@ var words = [
 
   //check user entered guess
    //var newDiv  = document.getElementById ("youGuess");
+
+ 
+ 
+ 
+ 
   document.addEventListener("keydown", function(event) {
     console.log(event.key);
     //newDiv.textContent = `${event.key}`;
   var youGuess = event.key;
- 
+
   console.log (remainingLetters);
   console.log (word.indexOf(youGuess));
   //indexof, where in the string a specifed value occurs.
@@ -72,8 +115,8 @@ var words = [
     rightWord.push (youGuess);
     console.log (rightWord);
 
-var usedrightword = document.getElementById ("rightGuess");
-usedrightword.textContent = rightWord;
+//var usedrightword = document.getElementById ("rightGuess");
+//usedrightword.textContent = rightWord;
     var targetdiv = document.getElementById ("youGuess");
     targetdiv.textContent = answerArray;
    chanceleft.textContent = allchances;
@@ -98,9 +141,16 @@ location.reload();
 }
 //win
 else if (word.indexOf(youGuess)>-1 && remainingLetters == 0 && allchances > 0)  {
-    {alert ("Congratulations!! The answer was " + word);
+ // buffers automatically when created
+ var playsound = function playSound() {
+          var sound = document.getElementById("audio");
+          sound.play();
+      }
+playsound();
+
+//alert ("Congratulations!! The answer was " + word);
 location.reload();
-}
+
 } 
 
 } 
